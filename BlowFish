@@ -1,0 +1,24 @@
+//April McBroom
+//Java Encrypted Blowfish file
+import javax.crypto.*;
+import java.util.Scanner;
+
+public class Blowfish
+{
+   public static void main(String[] args)throws Exception
+    {
+        SecretKey key=KeyGenerator.getInstance("Blowfish").generateKey();
+        Cipher c=Cipher.getInstance("BlowFish");
+        c.init(Cipher.ENCRYPT_MODE,key);//Initiating Encrypt Mode
+        Scanner scan= new Scanner(System.in);
+        System.out.println("Enter in word to encrypt and decrypt");
+        String pt=scan.next();
+        
+        byte[] encrypted=c.doFinal(pt.getBytes());
+        c.init(Cipher.DECRYPT_MODE,key);
+        byte[]ct=c.doFinal(encrypted);
+        System.out.println(new String(encrypted)+"\n"+new String(ct));
+        
+        
+}
+}
